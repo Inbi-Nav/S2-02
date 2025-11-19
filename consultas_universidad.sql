@@ -75,31 +75,14 @@ WHERE tipo = 'profesor'
 ORDER BY pe.apellido1, pe.apellido2, pe.nombre;
 
 -- 11. Retorna un llistat amb els professors/es que no estan associats a un departament. (apellido1, apellido2, nombre)
-SELECT  d.nombre as nombre_departamento, pe.apellido1 as primer_cognom, pe.apellido2 as segon_cognom, pe.nombre as nombre_profesor
+SELECT pe.apellido1 as primer_cognom, pe.apellido2 as segon_cognom, pe.nombre as nombre_profesor
 FROM persona pe 
 LEFT JOIN profesor p
 ON pe.id = p.id_profesor
 LEFT JOIN departamento d
 ON d.id = p.id_departamento
-WHERE d.nombre IS NULL;
+WHERE  pe.tipo = 'profesor' AND  d.nombre IS NULL;
 
--- 11. Retorna un llistat amb els professors/es que no estan associats a un departament. (apellido1, apellido2, nombre)
-SELECT  d.nombre as nombre_departamento, pe.apellido1 as primer_cognom, pe.apellido2 as segon_cognom, pe.nombre as nombre_profesor
-FROM persona pe 
-LEFT JOIN profesor p
-ON pe.id = p.id_profesor
-LEFT JOIN departamento d
-ON d.id = p.id_departamento
-WHERE d.nombre IS NULL;
-
--- 11. Retorna un llistat amb els professors/es que no estan associats a un departament. (apellido1, apellido2, nombre)
-SELECT pe.apellido1 AS primer_cognom, pe.apellido2 AS segon_cognom, pe.nombre AS nombre_profesor
-FROM persona pe
-LEFT JOIN profesor p
-ON pe.id = p.id_profesor
-WHERE pe.tipo = 'profesor'
-AND p.id_departamento IS NULL;
-  
 -- 12. Retorna un llistat amb els departaments que no tenen professors/es associats. (nombre)
 SELECT d.nombre
 FROM departamento d
